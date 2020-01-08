@@ -1,6 +1,10 @@
-#include <iostream>
+#include "execution.hpp"
 
+//system interface
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    Execute();
+
     return 0;
+
 }
