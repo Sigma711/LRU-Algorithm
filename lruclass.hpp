@@ -63,7 +63,7 @@ namespace ZHR {
         /*
         (now cache capacity must be greater than 0)
         compare previous size to the current one
-        if diffrent(the key has been used, so list and hash map NO.1 should be refreshed):
+        if different(the key has been used, so list and hash map NO.1 should be refreshed):
             put the key into the list front
             delete the key from hash map NO.1
             cut down cache capacity
