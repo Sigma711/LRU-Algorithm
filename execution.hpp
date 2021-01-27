@@ -4,7 +4,8 @@
 #define EXECUTION_HPP
 
 //execution interface
-void Execute() {
+void Execute()
+{
 
 	ZHR::LRUCache<int, std::string> lru1;
 

@@ -4,6 +4,8 @@ It was an final assignment of my Data Structure course in the third term of coll
 
 I chose LRU (Least Recently Used) algorithm for the project, because I was learning Operating System by myself and touched this wonderful algorithm.
 
+It was just a tiny project that could help me establish a sense of standardization.
+
 
 
 
