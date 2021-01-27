@@ -1,136 +1,101 @@
 #include <iostream>
-#include <string>
-#include <list>
-#include <unordered_map>
-
-#define MAX_CACHE_CAPACITY 5
 
 #ifndef LRUCLASS_HPP
 #define LRUCLASS_HPP
 
+#include <list>
+#include <unordered_map>
+#include <utility>
+
+#define MAX_CACHE_CAPACITY 5
+
 namespace ZHR {
 
-    //LRU algorithm class
-    class LRU {
+	template<typename K, typename V>
+	class LRUCache {
 
-    private:
-        int cache_capacity;//current cache capacity
-        std::list<int> linked_list;//key cache(list)
-        std::unordered_map<int, std::string> hash_map1;//store cache page contents
-        std::unordered_multimap<int, std::string> hash_map2;//store all page contents
+		const int capacity = MAX_CACHE_CAPACITY;// the max capacity of the memory
+		std::list<std::pair<K, V> > memory;// the memory (stores the key-value(page) pairs)
+		std::unordered_map<K, typename std::list<std::pair<K, V> >::iterator> cache;// the cache (indexes the key-value(page) pairs)
 
-    public:
-        LRU();//constructor
-        void AddPage(int, std::string);//add a page
-        void PrintCache();//show the cache(keys and page contents)
-        void PrintMemory();//show the memory(keys and page contents)
+	public:
+		explicit LRUCache();// initialization
+		[[maybe_unused]] K Get(K);// search a key-value(page) pair
+		void Put(K, V);// add a key-value(page) pair
+		void PrintMemory() const; //show all key-value(page) pairs of the memory
 
-    };
+	};
 
-    LRU::LRU() {
+	template<typename K, typename V>
+	LRUCache<K, V>::LRUCache() = default;
 
-        cache_capacity = 0;
+	template<typename K, typename V>
+	[[maybe_unused]] K LRUCache<K, V>::Get(K key)
+	{
 
-    }
+		// the page does not exist
+		if (cache.find(key) == cache.end()) {
 
-    void LRU::AddPage(int num, std::string cnt) {
+			return K(-1);
 
-        /*
-        if the list is empty
-        put the key into the list front
-        insert its info into the two hash maps
-        */
-        if (cache_capacity == 0) {
+		}
+		else {
 
-            linked_list.push_front(num);
-            hash_map1.insert({num, cnt});
-            hash_map2.insert({num, cnt});
+			// put the old page to the foremost position of the memory
+			typename std::list<std::pair<K, V> >::iterator visiting = cache[key];
+			memory.erase(visiting);
+			memory.push_front(*visiting);
 
-            cache_capacity = 1;
+			return key;
 
-            return;
+		}
 
-        }
+	}
 
-        /*
-        now cache capacity must be greater than 0
-        the previous size of the list should be recorded
-        then try to delete the key
-        */
-        int n = linked_list.size();
-        linked_list.remove(num);
+	template<typename K, typename V>
+	void LRUCache<K, V>::Put(K key, V value)
+	{
 
-        /*
-        (now cache capacity must be greater than 0)
-        compare previous size to the current one
-        if different(the key has been used, so list and hash map NO.1 should be refreshed):
-            put the key into the list front
-            delete the key from hash map NO.1
-            cut down cache capacity
-        else(the key has not been used):
-            if cache capacity is equal to MAX:
-                delete the back of the list
-            put the key into the list front
-        insert its info into the two hash maps
-        if cache capacity is less than MAX:
-            increase it
-        */
-        if ((int)linked_list.size() < n) {
+		// the page does not exist
+		if (cache.find(key) == cache.end()) {
 
-            linked_list.push_front(num);
-            hash_map1.erase(num);
+			// memory is full
+			if (memory.size() == capacity) {
 
-            cache_capacity -= 1;
+				// delete the page at final position of the memory
+				typename std::pair<K, V> last = memory.back();
+				memory.pop_back();
+				cache.erase(last.first);
 
-        }
-        else {
+			}
 
-            if (cache_capacity == MAX_CACHE_CAPACITY) {
+			// put the new page to the foremost position of the memory
+			memory.push_front({key, value});
+			cache[key] = memory.begin();
 
-                linked_list.pop_back();
+		}
+		else {
 
-            }
+			// put the special page to the foremost position of the memory
+			typename std::list<std::pair<K, V> >::iterator special = cache[key];
+			memory.erase(special);
+			memory.push_front(*special);
 
-            linked_list.push_front(num);
+		}
 
-        }
+	}
 
-        hash_map1.insert({num, cnt});
-        hash_map2.insert({num, cnt});
+	template<typename K, typename V>
+	void LRUCache<K, V>::PrintMemory() const
+	{
 
-        if (cache_capacity < MAX_CACHE_CAPACITY) {
+		std::cout << "\n*********BEGIN*********\nThe pages of the memory:\n";
+		for (const typename std::pair<K, V>& p : memory) {
+			std::cout << '[' << p.first << "]: " << p.second << std::endl;
+		}
+		std::cout << "**********END**********\n\n";
 
-            cache_capacity += 1;
-
-        }
-
-    }
-
-    void LRU::PrintCache() {
-
-        std::cout << "This is the content of the cache:\n";
-
-        for (auto& l : linked_list) {
-            std::cout << l << '\t' << hash_map1.find(l)->second << std::endl;
-        }
-
-        std::cout << std::endl;
-
-    }
-
-    void LRU::PrintMemory() {
-
-        std::cout << "This is the content of the memory:\n";
-
-        for (auto& h : hash_map2) {
-            std::cout << h.first << '\t' << h.second << std::endl;
-        }
-
-        std::cout << std::endl;
-
-    }
-
-    LRU lru1;
+	}
 
 }
 
