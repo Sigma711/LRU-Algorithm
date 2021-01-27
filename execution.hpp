@@ -22,7 +22,7 @@ void Execute() {
 	lru1.Put(4, "DCBA");
 	lru1.PrintMemory();
 	std::cout << lru1.Get(5) << std::endl;
-    lru1.PrintMemory();
+	lru1.PrintMemory();
 
 }
 
