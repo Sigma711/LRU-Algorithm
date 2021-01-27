@@ -1,4 +1,4 @@
-#### LRU(Least Recently Used) Simulation
+#### LRU (Least Recently Used) Simulation
 
 It was an final assignment of my Data Structure course in the third term of college, so I spent five minutes thinking and half an hour coding for the project with C++17.
 
