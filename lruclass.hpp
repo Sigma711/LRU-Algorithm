@@ -21,7 +21,7 @@ namespace ZHR {
 	public:
 		explicit LRUCache();// initialization
 		[[maybe_unused]] K Get(K);// search a key-value(page) pair
-		void Put(K, V);// add a key-value(page) pair
+		[[maybe_unused]] void Put(K, V);// add a key-value(page) pair
 		void PrintMemory() const; //show all key-value(page) pairs of the memory
 
 	};
@@ -53,8 +53,7 @@ namespace ZHR {
 	}
 
 	template<typename K, typename V>
-	void LRUCache<K, V>::Put(K key, V value)
-	{
+	[[maybe_unused]] void LRUCache<K, V>::Put(K key, V value) {
 
 		// the page does not exist
 		if (cache.find(key) == cache.end()) {
