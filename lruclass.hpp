@@ -42,7 +42,7 @@ namespace ZHR {
 		else {
 
 			// put the old page to the foremost position of the memory
-			typename std::list<std::pair<K, V> >::iterator visiting = cache[key];
+			auto visiting = cache[key];
 			memory.erase(visiting);
 			memory.push_front(*visiting);
 
@@ -63,7 +63,7 @@ namespace ZHR {
 			if (memory.size() == capacity) {
 
 				// delete the page at final position of the memory
-				typename std::pair<K, V> last = memory.back();
+				auto last = memory.back();
 				memory.pop_back();
 				cache.erase(last.first);
 
@@ -77,8 +77,9 @@ namespace ZHR {
 		else {
 
 			// put the special page to the foremost position of the memory
-			typename std::list<std::pair<K, V> >::iterator special = cache[key];
+			auto special = cache[key];
 			memory.erase(special);
+			(*special).second = value;
 			memory.push_front(*special);
 
 		}
@@ -90,8 +91,8 @@ namespace ZHR {
 	{
 
 		std::cout << "\n*********BEGIN*********\nThe pages of the memory:\n";
-		for (const typename std::pair<K, V>& p : memory) {
-			std::cout << '[' << p.first << "]: " << p.second << std::endl;
+		for (auto p = memory.begin(); p != memory.end(); ++p) {
+			std::cout << '[' << (*p).first << "]: " << (*p).second << std::endl;
 		}
 		std::cout << "**********END**********\n\n";
 
