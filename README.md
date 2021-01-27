@@ -1,6 +1,6 @@
 #### LRU (Least Recently Used) Simulation
 
-It was an final assignment of my Data Structure course in the third term of college, so I spent five minutes thinking
+It was an final assignment of my "Data Structure and Algorithm Analysis" course in the third term of college, so I spent five minutes thinking
 and half an hour coding for the project with C++17.
 
 I chose LRU (Least Recently Used) algorithm for the project, because when I was learning Operating System by myself I
