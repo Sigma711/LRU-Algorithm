@@ -22,7 +22,7 @@ namespace ZHR {
 		explicit LRUCache();// initialization
 		[[maybe_unused]] K Get(K);// search a key-value(page) pair
 		[[maybe_unused]] void Put(K, V);// add a key-value(page) pair
-		void PrintMemory() const; //show all key-value(page) pairs of the memory
+		void PrintMemory() const;//show all key-value(page) pairs of the memory
 
 	};
 
