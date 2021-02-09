@@ -3,4 +3,4 @@ project(LRU-Algorithm)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(LRU-Algorithm lruclass.h lruclass.cc execution.h execution.cc run.cc)
+add_executable(LRU-Algorithm lruclass.h execution.h execution.cc run.cc)
