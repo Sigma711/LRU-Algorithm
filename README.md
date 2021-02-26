@@ -26,7 +26,7 @@ In `./lru_class.h`, there is the "LRU" class template which names `LRUCache`.
 
 Class template `SIGMA711::LRUCache<K, V>` has three private member fields, which are `const int capacity`, `std::list<std::pair<K, V> > memory` and `std::unordered_map<K, typename std::list<std::pair<K, V> >::iterator> cache`, and four public member functions, which are constructor of explicit version, `K Get(K)`, `void Put(K, V)` and `void PrintMemory() const`.
 
-The specific idea of LRU algorithm is detailed [here](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)). Admittedly, I completely followed the idea of LRU algorithm to code `SIGMA711::LRUCache<K, V>`, it still differs from other common implementations of this algorithm with C++. I use STL of C++ Standard Library in the project. `memory` is a doubly linked list stored all key-value pair put into. `cache` is an unordered map stored the keys and the positions of their corresponding values. So both time complexities of the operation "get" and "put" are O(1).
+The specific idea of LRU algorithm is detailed [here](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)). Admittedly, I completely followed the idea of LRU algorithm to code `SIGMA711::LRUCache<K, V>`, it still differs from other common implementations of this algorithm with C++. I use STL of C++ Standard Library in the project. `memory` is a doubly linked list stored all key-value pair put into. `cache` is an unordered hashmap stored the keys and the positions of their corresponding values. So both time complexities of the operation "get" and "put" are O(1).
 
 ##### INTERFACE
 ```cpp
