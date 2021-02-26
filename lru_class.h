@@ -8,10 +8,12 @@
 
 #define MAX_CACHE_CAPACITY 5
 
-namespace ZHR {
+namespace ZHR
+{
 
 	template<typename K, typename V>
-	class LRUCache {
+	class LRUCache
+	{
 
 		const int capacity = MAX_CACHE_CAPACITY;// the max capacity of the memory
 		std::list<std::pair<K, V> > memory;// the memory (stores the key-value(page) pairs)
@@ -29,7 +31,8 @@ namespace ZHR {
 	LRUCache<K, V>::LRUCache() = default;
 
 	template<typename K, typename V>
-	[[maybe_unused]] K LRUCache<K, V>::Get(K key) {
+	[[maybe_unused]] K LRUCache<K, V>::Get(K key)
+	{
 
 		// the page does not exist
 		if (cache.find(key) == cache.end()) {
@@ -50,7 +53,8 @@ namespace ZHR {
 	}
 
 	template<typename K, typename V>
-	[[maybe_unused]] void LRUCache<K, V>::Put(K key, V value) {
+	[[maybe_unused]] void LRUCache<K, V>::Put(K key, V value)
+	{
 
 		// the page does not exist
 		if (cache.find(key) == cache.end()) {
@@ -82,7 +86,8 @@ namespace ZHR {
 	}
 
 	template<typename K, typename V>
-	void LRUCache<K, V>::PrintMemory() const {
+	void LRUCache<K, V>::PrintMemory() const
+	{
 
 		std::cout << "\n*********BEGIN*********\nThe pages of the memory:\n" << std::flush;
 		for (auto p = memory.begin(); p != memory.end(); ++p) {

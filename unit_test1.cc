@@ -5,7 +5,8 @@
 #include <cstdlib>
 
 // execute unit tests
-int main() {
+int main()
+{
 
 	TEST_LRU_CLASS(std::vector<TUPLE>(
 			{TUPLE({'g', 3, ""}), TUPLE({'p', 3, "ABC"}), TUPLE({'g', 3, ""}), TUPLE({'p', 4, "ABCD"}),
