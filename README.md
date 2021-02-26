@@ -18,7 +18,7 @@ Subsequently, I continued to standardize this project and make it more usable.
 
 There are three files, which they are `./lru_class.h`, `./my_unit_test.h` and `./unit_test1.cc`, included relevant the source code.
 
-The mainly one is `./lru_class.h` which has an "LRU" class template in the special namespace "SIGMA711" implemented the "LRU" algorithm. And the macro constant `MAX_CACHE_CAPACITY` which means the maximum capacity of the "LRU" data memory in "LRU" objects can be modify by users here. `./my_unit_test.h` includes the test-related marco "function", `TEST_LRU_CLASS(data_set)`, that users can use it to test their own data test sets. `./unit_test1.cc` is one example of test I gave which uses `TEST_LRU_CLASS(data_set)` to test the "LRU" class.
+The mainly one is `./lru_class.h` which has an "LRU" class template in the special namespace "SIGMA711" implemented the "LRU" algorithm. And the macro constant `MAX_CACHE_CAPACITY` which is the maximum capacity of the "LRU" data memory in "LRU" objects can be modify by users here. `./my_unit_test.h` includes the test-related marco "function", `TEST_LRU_CLASS(data_set)`, that users can use it to test their own data test sets. `./unit_test1.cc` is one example of test I gave which uses `TEST_LRU_CLASS(data_set)` to test the "LRU" class.
 
 ##### ILLUSTRATION
 
