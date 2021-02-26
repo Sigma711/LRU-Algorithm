@@ -1,5 +1,5 @@
-#ifndef LRU_ALGORITHM_LRUCLASS_H_
-#define LRU_ALGORITHM_LRUCLASS_H_
+// @Sigma711
+#pragma once
 
 #include <iostream>
 #include <list>
@@ -84,15 +84,12 @@ namespace ZHR {
 	template<typename K, typename V>
 	void LRUCache<K, V>::PrintMemory() const {
 
-		std::cout << "\n*********BEGIN*********\nThe pages of the memory:\n";
+		std::cout << "\n*********BEGIN*********\nThe pages of the memory:\n" << std::flush;
 		for (auto p = memory.begin(); p != memory.end(); ++p) {
-			std::cout << '[' << (*p).first << "]: " << (*p).second << std::endl;
+			std::cout << '[' << (*p).first << "]: " << (*p).second << std::endl << std::flush;
 		}
-		std::cout << "**********END**********\n\n";
+		std::cout << "**********END**********\n\n" << std::flush;
 
 	}
 
-
 }
-
-#endif
