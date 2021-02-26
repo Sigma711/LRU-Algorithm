@@ -1,5 +1,7 @@
 README.md
 LICENSE
+.gitignore
+.editorconfig
 
 # Prerequisites
 *.d
