@@ -89,7 +89,7 @@ namespace SIGMA711
 	void LRUCache<K, V>::PrintMemory() const
 	{
 
-		std::cout << "\n*********BEGIN*********\nThe pages of the memory:\n" << std::flush;
+		std::cout << "*********BEGIN*********\nThe pages of the memory:\n" << std::flush;
 		for (auto p = memory.begin(); p != memory.end(); ++p) {
 			std::cout << '[' << (*p).first << "]: " << (*p).second << std::endl << std::flush;
 		}
