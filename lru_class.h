@@ -8,7 +8,7 @@
 
 #define MAX_CACHE_CAPACITY 5
 
-namespace ZHR
+namespace SIGMA711
 {
 
 	template<typename K, typename V>

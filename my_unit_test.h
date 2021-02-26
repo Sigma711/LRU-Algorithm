@@ -12,7 +12,7 @@
 // unit test interface
 #define TEST_LRU_CLASS(data_set) do {\
                                     std::vector<typename std::tuple<char, int, std::string>> ds = data_set;\
-                                    std::unique_ptr<typename ZHR::LRUCache<int, std::string>> lru(new ZHR::LRUCache<int, std::string>());\
+                                    std::unique_ptr<typename SIGMA711::LRUCache<int, std::string>> lru(new SIGMA711::LRUCache<int, std::string>());\
                                     for (const auto& d : ds) {\
                                         if (std::get<0>(d) == 'p') {\
                                             lru->Put(std::get<1>(d), std::get<2>(d));\
