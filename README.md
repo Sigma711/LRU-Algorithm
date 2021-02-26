@@ -24,9 +24,9 @@ The mainly one is `./lru_class.h` which has an "LRU" class template in the speci
 
 In `./lru_class.h`, there is the "LRU" class template which names `LRUCache`.
 
-Class template `LRUCache<K, V>` has three private member fields, which are `const int capacity`, `std::list<std::pair<K, V> > memory` and `std::unordered_map<K, typename std::list<std::pair<K, V> >::iterator> cache`, and four public member functions, which are constructor of explicit version, `K Get(K)`, `void Put(K, V)` and `void PrintMemory() const`.
+Class template `SIGMA711::LRUCache<K, V>` has three private member fields, which are `const int capacity`, `std::list<std::pair<K, V> > memory` and `std::unordered_map<K, typename std::list<std::pair<K, V> >::iterator> cache`, and four public member functions, which are constructor of explicit version, `K Get(K)`, `void Put(K, V)` and `void PrintMemory() const`.
 
-The specific idea of LRU algorithm is detailed [here](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)). Admittedly, I completely followed the idea of LRU algorithm to code `LRUCache<K, V>`, it still differs from other common implementations of this algorithm with C++. I use STL of C++ Standard Library in the project. `memory` is a doubly linked list stored all key-value pair put into. `cache` is an unordered map stored the keys and the positions of their corresponding values. So both time complexities of the operation "get" and "put" are O(1).
+The specific idea of LRU algorithm is detailed [here](https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)). Admittedly, I completely followed the idea of LRU algorithm to code `SIGMA711::LRUCache<K, V>`, it still differs from other common implementations of this algorithm with C++. I use STL of C++ Standard Library in the project. `memory` is a doubly linked list stored all key-value pair put into. `cache` is an unordered map stored the keys and the positions of their corresponding values. So both time complexities of the operation "get" and "put" are O(1).
 
 ##### INTERFACE
 ```cpp
@@ -35,21 +35,21 @@ The specific idea of LRU algorithm is detailed [here](https://en.wikipedia.org/w
  * value in the memory and it will return it if
  * succeeds. And if fails, it will return -1.
  */
-K LRUCache<K, V>::Get(K key);
+K SIGMA711::LRUCache<K, V>::Get(K key);
 
 /*
  * You can put a key and its corresponding
  * value into the memory.
  */
-void LRUCache<K, V>::Put(K key, V value);
+void SIGMA711::LRUCache<K, V>::Put(K key, V value);
 
 /*
  * You can print all key-value pairs in the
  * memory of the LRU object.
  */
-void LRUCache<K, V>::PrintMemory() const;
+void SIGMA711::LRUCache<K, V>::PrintMemory() const;
 ```
 
 ##### USAGE
 
-Just copy the file `./lru_class.h` into a directory of your project needed the class template `LRUCache<K, V>` and declare `#include "lru_class.h"` at the top of the file where you want to use it in.
+Just copy the file `./lru_class.h` into a directory of your project needed the class template `SIGMA711::LRUCache<K, V>` and declare `#include "lru_class.h"` at the top of the file where you want to use it in.
