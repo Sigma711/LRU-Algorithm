@@ -43,8 +43,8 @@ namespace SIGMA711
 
 		// put the old page to the foremost position of the memory
 		auto visiting = cache[key];
-		memory.erase(visiting);
-		memory.push_front(*visiting);
+		memory.splice(memory.begin(), memory, visiting);
+		cache[key] = memory.begin();
 
 		return cache[key]->second;
 
@@ -75,9 +75,9 @@ namespace SIGMA711
 
 		// put the special page to the foremost position of the memory
 		auto special = cache[key];
-		memory.erase(special);
-		(*special).second = value;
-		memory.push_front(*special);
+		memory.splice(memory.begin(), memory, special);
+		cache[key] = memory.begin();
+		cache[key]->second = value;
 
 	}
 
