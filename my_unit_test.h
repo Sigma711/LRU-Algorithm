@@ -19,7 +19,7 @@
                                             lru->Put(std::get<1>(d), std::get<2>(d));\
                                         }\
                                         else if (std::get<0>(d) == 'g') {\
-                                            if (lru->Get(std::get<1>(d)) == -1) {\
+                                            if (lru->Get(std::get<1>(d)) == "") {\
                                                 std::cout << "Fail to get " << std::get<1>(d) << "...\n";\
                                             }\
                                         }\

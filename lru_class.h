@@ -37,7 +37,7 @@ namespace SIGMA711
 		// the page does not exist
 		if (cache.find(key) == cache.end()) {
 
-			return K(-1);
+			return V();
 
 		}
 
