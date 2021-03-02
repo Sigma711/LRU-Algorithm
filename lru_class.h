@@ -21,7 +21,7 @@ namespace SIGMA711
 
 	public:
 		explicit LRUCache();// initialization
-		[[maybe_unused]] K Get(K);// search a key-value(page) pair
+		[[maybe_unused]] V Get(K);// search a key-value(page) pair
 		[[maybe_unused]] void Put(K, V);// add a key-value(page) pair
 		void PrintMemory() const;//show all key-value(page) pairs of the memory
 
@@ -31,7 +31,7 @@ namespace SIGMA711
 	LRUCache<K, V>::LRUCache() = default;
 
 	template<typename K, typename V>
-	[[maybe_unused]] K LRUCache<K, V>::Get(K key)
+	[[maybe_unused]] V LRUCache<K, V>::Get(K key)
 	{
 
 		// the page does not exist
@@ -46,7 +46,7 @@ namespace SIGMA711
 		memory.erase(visiting);
 		memory.push_front(*visiting);
 
-		return key;
+		return cache[key]->second;
 
 	}
 
