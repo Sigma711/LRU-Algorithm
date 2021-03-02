@@ -71,15 +71,13 @@ namespace SIGMA711
 			memory.push_front({key, value});
 			cache[key] = memory.begin();
 
-		} else {
-
-			// put the special page to the foremost position of the memory
-			auto special = cache[key];
-			memory.erase(special);
-			(*special).second = value;
-			memory.push_front(*special);
-
 		}
+
+		// put the special page to the foremost position of the memory
+		auto special = cache[key];
+		memory.erase(special);
+		(*special).second = value;
+		memory.push_front(*special);
 
 	}
 
