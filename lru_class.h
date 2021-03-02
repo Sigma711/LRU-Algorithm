@@ -39,16 +39,14 @@ namespace SIGMA711
 
 			return K(-1);
 
-		} else {
-
-			// put the old page to the foremost position of the memory
-			auto visiting = cache[key];
-			memory.erase(visiting);
-			memory.push_front(*visiting);
-
-			return key;
-
 		}
+
+		// put the old page to the foremost position of the memory
+		auto visiting = cache[key];
+		memory.erase(visiting);
+		memory.push_front(*visiting);
+
+		return key;
 
 	}
 
