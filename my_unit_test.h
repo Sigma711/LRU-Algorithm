@@ -11,7 +11,7 @@
 
 // unit test interface
 #define TEST_LRU_CLASS(data_set) do {\
-									std::cout << "NO." << ++unit_test_example_no << " unit test example:\n";\
+								                   	std::cout << "NO." << ++unit_test_example_no << " unit test example:\n";\
                                     std::vector<typename std::tuple<char, int, std::string>> ds = data_set;\
                                     std::unique_ptr<typename SIGMA711::LRUCache<int, std::string>> lru(new SIGMA711::LRUCache<int, std::string>());\
                                     for (const auto& d : ds) {\
