@@ -30,23 +30,17 @@ The specific idea of LRU algorithm is detailed [here](https://en.wikipedia.org/w
 
 ##### INTERFACE
 ```cpp
-/*
- * You can use a key to get the corresponding
- * value in the memory and it will return it if
- * succeeds. And if fails, it will return -1.
- */
+// You can use a key to get the corresponding
+// value in the memory and it will return it if
+// succeeds. And if fails, it will return -1.
 V SIGMA711::LRUCache<K, V>::Get(K key);
 
-/*
- * You can put a key and its corresponding
- * value into the memory.
- */
+// You can put a key and its corresponding
+// value into the memory.
 void SIGMA711::LRUCache<K, V>::Put(K key, V value);
 
-/*
- * You can print all key-value pairs in the
- * memory of the LRU object.
- */
+// You can print all key-value pairs in the
+// memory of the LRU object.
 void SIGMA711::LRUCache<K, V>::PrintMemory() const;
 ```
 
