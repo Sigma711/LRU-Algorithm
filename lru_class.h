@@ -11,86 +11,87 @@
 namespace SIGMA711
 {
 
-	template<typename K, typename V>
-	class LRUCache
-	{
+template<typename K, typename V>
+class LRUCache
+{
 
-		const int capacity = MAX_CACHE_CAPACITY;// the max capacity of the memory
-		std::list<std::pair<K, V> > memory;// the memory (stores the key-value(page) pairs)
-		std::unordered_map<K, typename std::list<std::pair<K, V> >::iterator> cache;// the cache (indexes the key-value(page) pairs)
+	const int capacity = MAX_CACHE_CAPACITY;// the max capacity of the memory
+	std::list<std::pair<K, V> > memory;// the memory (stores the key-value(page) pairs)
+	std::unordered_map<K, typename std::list<std::pair<K, V> >::iterator> cache;// the cache (indexes the key-value(page) pairs)
 
-	public:
-		explicit LRUCache();// initialization
-		[[maybe_unused]] V Get(K);// search a key-value(page) pair
-		[[maybe_unused]] void Put(K, V);// add a key-value(page) pair
-		void PrintMemory() const;//show all key-value(page) pairs of the memory
+public:
 
-	};
+	explicit LRUCache();// initialization
+	[[maybe_unused]] V Get(K);// search a key-value(page) pair
+	[[maybe_unused]] void Put(K, V);// add a key-value(page) pair
+	void PrintMemory() const;//show all key-value(page) pairs of the memory
 
-	template<typename K, typename V>
-	LRUCache<K, V>::LRUCache() = default;
+};
 
-	template<typename K, typename V>
-	[[maybe_unused]] V LRUCache<K, V>::Get(K key)
-	{
+template<typename K, typename V>
+LRUCache<K, V>::LRUCache() = default;
 
-		// the page does not exist
-		if (cache.find(key) == cache.end()) {
+template<typename K, typename V>
+[[maybe_unused]] V LRUCache<K, V>::Get(K key)
+{
 
-			return V();
+	// the page does not exist
+	if (cache.find(key) == cache.end()) {
+
+		return V();
+
+	}
+
+	// put the old page to the foremost position of the memory
+	auto visiting = cache[key];
+	memory.splice(memory.begin(), memory, visiting);
+	cache[key] = memory.begin();
+
+	return cache[key]->second;
+
+}
+
+template<typename K, typename V>
+[[maybe_unused]] void LRUCache<K, V>::Put(K key, V value)
+{
+
+	// the page does not exist
+	if (cache.find(key) == cache.end()) {
+
+		// memory is full
+		if (memory.size() == capacity) {
+
+			// delete the page at final position of the memory
+			auto last = memory.back();
+			memory.pop_back();
+			cache.erase(last.first);
 
 		}
 
-		// put the old page to the foremost position of the memory
-		auto visiting = cache[key];
-		memory.splice(memory.begin(), memory, visiting);
+		// put the new page to the foremost position of the memory
+		memory.push_front({key, value});
 		cache[key] = memory.begin();
 
-		return cache[key]->second;
-
 	}
 
-	template<typename K, typename V>
-	[[maybe_unused]] void LRUCache<K, V>::Put(K key, V value)
-	{
+	// put the special page to the foremost position of the memory
+	auto special = cache[key];
+	memory.splice(memory.begin(), memory, special);
+	cache[key] = memory.begin();
+	cache[key]->second = value;
 
-		// the page does not exist
-		if (cache.find(key) == cache.end()) {
+}
 
-			// memory is full
-			if (memory.size() == capacity) {
+template<typename K, typename V>
+void LRUCache<K, V>::PrintMemory() const
+{
 
-				// delete the page at final position of the memory
-				auto last = memory.back();
-				memory.pop_back();
-				cache.erase(last.first);
-
-			}
-
-			// put the new page to the foremost position of the memory
-			memory.push_front({key, value});
-			cache[key] = memory.begin();
-
-		}
-
-		// put the special page to the foremost position of the memory
-		auto special = cache[key];
-		memory.splice(memory.begin(), memory, special);
-		cache[key] = memory.begin();
-		cache[key]->second = value;
-
+	std::cout << "*********BEGIN*********\nThe pages of the memory:\n" << std::flush;
+	for (auto p = memory.begin(); p != memory.end(); ++p) {
+		std::cout << '[' << (*p).first << "]: " << (*p).second << std::endl << std::flush;
 	}
+	std::cout << "**********END**********\n\n" << std::flush;
 
-	template<typename K, typename V>
-	void LRUCache<K, V>::PrintMemory() const
-	{
-
-		std::cout << "*********BEGIN*********\nThe pages of the memory:\n" << std::flush;
-		for (auto p = memory.begin(); p != memory.end(); ++p) {
-			std::cout << '[' << (*p).first << "]: " << (*p).second << std::endl << std::flush;
-		}
-		std::cout << "**********END**********\n\n" << std::flush;
-
-	}
+}
 
 }
