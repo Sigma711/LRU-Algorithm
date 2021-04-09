@@ -1,8 +1,8 @@
 // @Sigma711
+#include <stdlib.h>
+
 #include "lru_class.h"
 #include "my_unit_test.h"
-
-#include <stdlib.h>
 
 // execute unit tests1
 int main()
